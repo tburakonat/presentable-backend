@@ -1,11 +1,11 @@
-from django.shortcuts import get_object_or_404
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from django.shortcuts import get_list_or_404
+from rest_framework import generics
 from api.models import (
     Course, 
     User, 
     Presentation, 
-    Feedback
+    Feedback,
+    FeedbackComment,
 )
 from api.serializers import (
     CourseSerializer, 
@@ -15,52 +15,55 @@ from api.serializers import (
     FeedbackCommentSerializer,
 )
 
-@api_view(['GET'])
-def get_all_users(request):
-    users = User.objects.all()
-    serializer = UserSerializer(users, many=True)
-    return Response(serializer.data)
+
+class UserProfile(generics.RetrieveAPIView):
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        return self.request.user
 
 
-@api_view(['GET'])
-def get_all_courses(request):
-    courses = Course.objects.all()
-    serializer = CourseSerializer(courses, many=True)
-    return Response(serializer.data)
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
-@api_view(['GET'])
-def get_course_by_id(request, course_id):
-    course = get_object_or_404(Course, id=course_id)
-    serializer = CourseSerializer(course)
-    return Response(serializer.data)
+class CourseList(generics.ListAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
 
 
-@api_view(['GET'])
-def get_all_presentations(request):
-    presentations = Presentation.objects.all()
-    serializer = PresentationSerializer(presentations, many=True)
-    return Response(serializer.data)
+class CourseDetail(generics.RetrieveAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    lookup_url_kwarg = 'course_id'
+    lookup_field = 'id'
 
 
-@api_view(['GET'])
-def get_presentation_by_id(request, presentation_id):
-    presentation = get_object_or_404(Presentation, id=presentation_id)
-    serializer = PresentationSerializer(presentation)
-    return Response(serializer.data)
+class PresentationList(generics.ListAPIView):
+    queryset = Presentation.objects.all()
+    serializer_class = PresentationSerializer
 
 
-@api_view(['GET'])
-def get_feedback_by_presentation_id(request, presentation_id):
-    presentation = get_object_or_404(Presentation, id=presentation_id)
-    feedbacks = presentation.received_feedbacks.all()
-    serializer = FeedbackSerializer(feedbacks, many=True)
-    return Response(serializer.data)
+class PresentationDetail(generics.RetrieveAPIView):
+    queryset = Presentation.objects.all()
+    serializer_class = PresentationSerializer
+    lookup_url_kwarg = 'presentation_id'
+    lookup_field = 'id'
 
 
-@api_view(['GET'])
-def get_comments_by_feedback_id(request, feedback_id):
-    feedback = get_object_or_404(Feedback, id=feedback_id)
-    comments = feedback.feedback_comments.all()
-    serializer = FeedbackCommentSerializer(comments, many=True)
-    return Response(serializer.data)
+class FeedbackList(generics.ListAPIView):
+    serializer_class = FeedbackSerializer
+
+    def get_queryset(self):
+        presentation_id = self.kwargs.get('presentation_id')
+        return get_list_or_404(Feedback, presentation_id=presentation_id)
+
+
+class FeedbackCommentList(generics.ListAPIView):
+    serializer_class = FeedbackCommentSerializer
+
+    def get_queryset(self):
+        feedback_id = self.kwargs.get('feedback_id')
+        return get_list_or_404(FeedbackComment, feedback_id=feedback_id)
+
