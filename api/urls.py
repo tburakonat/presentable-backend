@@ -3,7 +3,7 @@ from api import views
 
 urlpatterns = [
     path('me/', views.UserProfile.as_view()),
-    path('users/', views.UserList.as_view()),
+    path('users/', views.UserListCreate.as_view()),
     path('courses/', views.CourseList.as_view()),
     path('courses/<int:course_id>/', views.CourseDetail.as_view()),
     path('presentations/', views.PresentationList.as_view()),

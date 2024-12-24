@@ -23,7 +23,7 @@ class UserProfile(generics.RetrieveAPIView):
         return self.request.user
 
 
-class UserList(generics.ListAPIView):
+class UserListCreate(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
