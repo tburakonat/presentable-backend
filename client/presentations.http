@@ -1,0 +1,37 @@
+### Get all presentations
+GET http://localhost:8000/api/presentations/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
+
+
+### Get a presentation
+GET http://localhost:8000/api/presentations/1/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
+
+
+### Create a new presentation
+POST http://localhost:8000/api/presentations/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
+
+{
+  "title": "Presentation 1",
+  "description": "This is a presentation",
+}
+
+
+### Update a presentation
+PUT http://localhost:8000/api/presentations/3/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
+
+{
+  "title": "Presentation 1",
+  "description": "This is a presentation",
+}
+
+
+### Delete a presentation
+DELETE http://localhost:8000/api/presentations/3/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
+

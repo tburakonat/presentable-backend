@@ -1,0 +1,38 @@
+### Get all comments for a feedback
+GET http://localhost:8000/api/feedback/2/comments/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
+
+
+# TODO - Infer the feedback id from the URL and the created_by from the token
+### Create a comment for a feedback
+POST http://localhost:8000/api/feedback/2/comments/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
+
+{
+    "content": "This is a comment for feedback",
+    "created_by": 3,
+    "feedback": 2
+}
+
+### Get a comment
+GET http://localhost:8000/api/feedback/2/comments/4/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
+
+
+### Update a comment
+PUT http://localhost:8000/api/feedback/2/comments/4/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
+
+{
+    "content": "This is an updated comment for feedback",
+    "created_by": 3,
+    "feedback": 2
+}
+
+
+### Delete a comment
+DELETE http://localhost:8000/api/feedback/2/comments/4/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
+

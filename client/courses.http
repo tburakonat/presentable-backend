@@ -1,0 +1,36 @@
+### Get all courses
+GET http://localhost:8000/api/courses/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
+
+
+### Create a new course
+POST http://localhost:8000/api/courses/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
+
+{
+  "name": "New Course",
+  "description": "New Course Description",
+}
+
+
+### Get a course
+GET http://localhost:8000/api/courses/1/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
+
+
+### Update a course
+PUT http://localhost:8000/api/courses/1/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
+
+{
+  "description": "New Course Description",
+}
+
+
+### Delete a course
+DELETE http://localhost:8000/api/courses/1/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
+
