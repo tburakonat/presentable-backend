@@ -1,0 +1,27 @@
+### Get access and refresh tokens for an admin user
+POST http://localhost:8000/api/token/
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "thisistheadminpassword"
+}
+
+
+### Get access and refresh tokens for a normal user
+POST http://localhost:8000/api/token/
+Content-Type: application/json
+
+{
+  "username": "clove",
+  "password": "thisismypassword"
+}
+
+
+### Refresh the access token
+POST http://localhost:8000/api/token/refresh/
+Content-Type: application/json
+
+{
+  "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczNTIxODU0NiwiaWF0IjoxNzM1MTMyMTQ2LCJqdGkiOiJlMTMzNTgyNTJkNjk0Y2Y5ODRlOTZjZWE4MzQ3YmJkNiIsInVzZXJfaWQiOjh9.XLfWC48t722g7vXezwj3jFcNBLeygrVGd8nbQAV7kA8"
+}

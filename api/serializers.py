@@ -10,8 +10,6 @@ class UserSerializer(serializers.ModelSerializer):
             'last_name', 
             'username', 
             'email',
-            'courses_taught',
-            'enrolled_courses',
         )
 
 

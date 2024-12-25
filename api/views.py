@@ -1,5 +1,6 @@
 from django.shortcuts import get_list_or_404
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 from api.models import (
     Course, 
     User, 
@@ -18,6 +19,7 @@ from api.serializers import (
 
 class UserProfile(generics.RetrieveAPIView):
     serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_object(self):
         return self.request.user
@@ -26,11 +28,20 @@ class UserProfile(generics.RetrieveAPIView):
 class UserListCreate(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+
+    # This is an example of how to dynamically set permissions based on the request method
+    # def get_permissions(self):
+    #     self.permission_classes = [AllowAny]
+    #     if self.request.method == 'POST':
+    #         self.permission_classes = [IsAdminUser]
+    #     return super().get_permissions()
 
 
 class CourseList(generics.ListAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class CourseDetail(generics.RetrieveAPIView):
@@ -38,11 +49,13 @@ class CourseDetail(generics.RetrieveAPIView):
     serializer_class = CourseSerializer
     lookup_url_kwarg = 'course_id'
     lookup_field = 'id'
+    permission_classes = [IsAuthenticated]
 
 
 class PresentationList(generics.ListAPIView):
     queryset = Presentation.objects.all()
     serializer_class = PresentationSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class PresentationDetail(generics.RetrieveAPIView):
@@ -50,10 +63,12 @@ class PresentationDetail(generics.RetrieveAPIView):
     serializer_class = PresentationSerializer
     lookup_url_kwarg = 'presentation_id'
     lookup_field = 'id'
+    permission_classes = [IsAuthenticated]
 
 
 class FeedbackList(generics.ListAPIView):
     serializer_class = FeedbackSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         presentation_id = self.kwargs.get('presentation_id')
@@ -62,6 +77,7 @@ class FeedbackList(generics.ListAPIView):
 
 class FeedbackCommentList(generics.ListAPIView):
     serializer_class = FeedbackCommentSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         feedback_id = self.kwargs.get('feedback_id')
