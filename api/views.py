@@ -40,7 +40,7 @@ class UserRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
 
     def get_permissions(self):
         self.permission_classes = [IsAuthenticated]
-        if self.request.method == 'POST' or self.request.method == 'DELETE':
+        if self.request.method in ["PUT", "PATCH", "DELETE"]:
             self.permission_classes = [IsAdminUser]
         return super().get_permissions()
 
@@ -64,7 +64,7 @@ class CourseRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
 
     def get_permissions(self):
         self.permission_classes = [IsAuthenticated]
-        if self.request.method == 'POST' or self.request.method == 'DELETE':
+        if self.request.method in ["PUT", "PATCH", "DELETE"]:
             self.permission_classes = [IsAdminUser]
         return super().get_permissions()
 
@@ -88,7 +88,7 @@ class PresentationRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
 
     def get_permissions(self):
         self.permission_classes = [IsAuthenticated]
-        if self.request.method == 'POST' or self.request.method == 'DELETE':
+        if self.request.method in ["PUT", "PATCH", "DELETE"]:
             self.permission_classes = [IsAdminUser]
         return super().get_permissions()
 
@@ -111,6 +111,13 @@ class FeedbackRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = FeedbackSerializer
     lookup_url_kwarg = 'feedback_id'
     lookup_field = 'id'
+
+    def get_permissions(self):
+        self.permission_classes = [IsAuthenticated]
+        if self.request.method in ["PUT", "PATCH", "DELETE"]:
+            self.permission_classes = [IsAdminUser]
+        return super().get_permissions()
+
 
     def get_queryset(self):
         presentation_id = self.kwargs.get('presentation_id')
@@ -145,6 +152,13 @@ class FeedbackCommentListCreate(generics.ListCreateAPIView):
 
 class FeedbackCommentRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = FeedbackCommentSerializer
+
+    def get_permissions(self):
+        self.permission_classes = [IsAuthenticated]
+        if self.request.method in ["PUT", "PATCH", "DELETE"]:
+            self.permission_classes = [IsAdminUser]
+        return super().get_permissions()
+
 
     def get_queryset(self):
         feedback_id = self.kwargs.get('feedback_id')
