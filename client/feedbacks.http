@@ -1,10 +1,10 @@
-### Get all feedbacks for a presentation
-GET http://localhost:8000/api/presentations/1/feedback/
+### Get all feedbacks
+GET http://localhost:8000/api/feedbacks/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
 
 # TODO: Infer presentation ID from URL
 ### Create a new feedback for a presentation
-POST http://localhost:8000/api/presentations/1/feedback/
+POST http://localhost:8000/api/feedback/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
 
@@ -15,13 +15,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 }
 
 
-### Get a feedback for a presentation
-GET http://localhost:8000/api/presentations/1/feedback/3/
+### Get a feedback
+GET http://localhost:8000/api/feedbacks/2/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
 
 
-### Update a feedback for a presentation
-PUT http://localhost:8000/api/presentations/1/feedback/3/
+### Update a feedback
+PUT http://localhost:8000/api/feedbacks/3/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
 
@@ -32,7 +32,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 }
 
 
-### Delete a feedback for a presentation
-DELETE http://localhost:8000/api/presentations/1/feedback/3/
+### Delete a feedback
+DELETE http://localhost:8000/api/feedback/3/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4

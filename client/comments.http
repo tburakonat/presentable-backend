@@ -1,11 +1,11 @@
-### Get all comments for a feedback
-GET http://localhost:8000/api/feedback/2/comments/
+### Get all comments
+GET http://localhost:8000/api/comments/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
 
 
 # TODO - Infer the feedback id from the URL and the created_by from the token
-### Create a comment for a feedback
-POST http://localhost:8000/api/feedback/2/comments/
+### Create a comment
+POST http://localhost:8000/api/comments/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
 
@@ -16,12 +16,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 }
 
 ### Get a comment
-GET http://localhost:8000/api/feedback/2/comments/4/
+GET http://localhost:8000/api/comments/5/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
 
 
 ### Update a comment
-PUT http://localhost:8000/api/feedback/2/comments/4/
+PUT http://localhost:8000/api/comments/3/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
 
@@ -33,6 +33,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 
 ### Delete a comment
-DELETE http://localhost:8000/api/feedback/2/comments/4/
+DELETE http://localhost:8000/api/comments/5/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjMyMzA4LCJpYXQiOjE3MzUxNDU5MDgsImp0aSI6IjI0NDljMzYxODBmYTQxYzc5MjlhY2JkMzM4NmI0NzhjIiwidXNlcl9pZCI6OH0.7ZsBe9wjSJMO-RvVZqk5ZOaLmwqvXGlAV6Jlr1451v4
 
