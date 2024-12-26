@@ -1,5 +1,11 @@
-from django.shortcuts import get_list_or_404
 from rest_framework.exceptions import NotFound
+from api.filters import (
+    UserFilter, 
+    CourseFilter,
+    PresentationFilter,
+    FeedbackFilter,
+    FeedbackCommentFilter,
+)
 from rest_framework import generics
 from rest_framework.permissions import (
     IsAuthenticated,
@@ -24,6 +30,7 @@ from api.serializers import (
 class UserListCreate(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    filterset_class = UserFilter
 
     def get_permissions(self):
         self.permission_classes = [IsAuthenticated]
@@ -48,6 +55,7 @@ class UserRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
 class CourseListCreate(generics.ListCreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    filterset_class = CourseFilter
 
     def get_permissions(self):
         self.permission_classes = [IsAuthenticated]
@@ -72,6 +80,7 @@ class CourseRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
 class PresentationListCreate(generics.ListCreateAPIView):
     queryset = Presentation.objects.all()
     serializer_class = PresentationSerializer
+    filterset_class = PresentationFilter
 
     def get_permissions(self):
         self.permission_classes = [IsAuthenticated]
@@ -95,10 +104,15 @@ class PresentationRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
 
 class FeedbackListCreate(generics.ListCreateAPIView):
     serializer_class = FeedbackSerializer
+    filterset_class = FeedbackFilter
 
     def get_queryset(self):
         presentation_id = self.kwargs.get('presentation_id')
-        return get_list_or_404(Feedback, presentation_id=presentation_id)
+        queryset = Feedback.objects.filter(presentation_id=presentation_id)
+        if not queryset.exists():
+            raise NotFound("No Feedback matches the given query.")
+        return queryset
+
     
     def get_permissions(self):
         self.permission_classes = [IsAuthenticated]
@@ -138,10 +152,14 @@ class FeedbackRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
 
 class FeedbackCommentListCreate(generics.ListCreateAPIView):
     serializer_class = FeedbackCommentSerializer
+    filterset_class = FeedbackCommentFilter
 
     def get_queryset(self):
         feedback_id = self.kwargs.get('feedback_id')
-        return get_list_or_404(FeedbackComment, feedback_id=feedback_id)
+        queryset = FeedbackComment.objects.filter(feedback_id=feedback_id)
+        if not queryset.exists():
+            raise NotFound("No FeedbackComment matches the given query.")
+        return queryset
     
     def get_permissions(self):
         self.permission_classes = [IsAuthenticated]
