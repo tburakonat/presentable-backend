@@ -1,4 +1,6 @@
 from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.decorators import action
 from api.filters import (
     UserFilter, 
     CourseFilter,
@@ -6,7 +8,6 @@ from api.filters import (
     FeedbackFilter,
     FeedbackCommentFilter,
 )
-from rest_framework import generics
 from rest_framework.permissions import (
     IsAuthenticated,
     IsAdminUser,
@@ -37,6 +38,20 @@ class UserViewSet(viewsets.ModelViewSet):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
             self.permission_classes = [IsAdminUser]
         return super().get_permissions()
+
+    @action(detail=True, methods=['GET'], url_path='enrolled-courses')
+    def enrolled_courses(self, request, pk=None):
+        user = self.get_object()
+        courses = user.enrolled_courses.all()
+        serializer = CourseSerializer(courses, many=True)
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['GET'], url_path='taught-courses')
+    def taught_courses(self, request, pk=None):
+        user = self.get_object()
+        taught_courses = user.courses_taught.all()
+        serializer = CourseSerializer(taught_courses, many=True)
+        return Response(serializer.data)
 
 
 class CourseViewSet(viewsets.ModelViewSet):
