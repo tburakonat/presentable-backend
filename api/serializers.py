@@ -59,6 +59,7 @@ class PresentationSerializer(serializers.ModelSerializer):
             'course',
             'presentation_events',
             'transcription',
+            'is_private',
         )
 
 

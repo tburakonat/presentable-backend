@@ -38,6 +38,12 @@ class UserViewSet(viewsets.ModelViewSet):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
             self.permission_classes = [IsAdminUser]
         return super().get_permissions()
+    
+    @action(detail=False, methods=['GET'], url_path='me')
+    def me(self, request, pk=None):
+        user = request.user
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
 
     @action(detail=True, methods=['GET'], url_path='enrolled-courses')
     def enrolled_courses(self, request, pk=None):

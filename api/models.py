@@ -44,6 +44,7 @@ class Presentation(models.Model):
     transcription = models.JSONField(blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='presentations')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='presentations')
+    is_private = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
