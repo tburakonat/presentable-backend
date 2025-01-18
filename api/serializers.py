@@ -63,7 +63,21 @@ class PresentationSerializer(serializers.ModelSerializer):
         )
 
 
-class FeedbackSerializer(serializers.ModelSerializer):
+class FeedbackWriteSerializer(serializers.ModelSerializer):
+    created_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
+    presentation = serializers.PrimaryKeyRelatedField(queryset=models.Presentation.objects.all())
+    class Meta:
+        model = models.Feedback
+        fields = (
+            'id',
+            'content',
+            'created_at',
+            'created_by',
+            'presentation',
+        )
+
+
+class FeedbackReadSerializer(serializers.ModelSerializer):
     created_by = UserSerializer()
     presentation = PresentationSerializer()
     class Meta:
@@ -77,9 +91,25 @@ class FeedbackSerializer(serializers.ModelSerializer):
         )
 
 
-class FeedbackCommentSerializer(serializers.ModelSerializer):
+class FeedbackCommentWriteSerializer(serializers.ModelSerializer):
+    created_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
+    feedback = serializers.PrimaryKeyRelatedField(queryset=models.Feedback.objects.all())
+
+    class Meta:
+        model = models.FeedbackComment
+        fields = (
+            'id',
+            'content',
+            'created_at',
+            'created_by',
+            'feedback',
+        )
+
+
+class FeedbackCommentReadSerializer(serializers.ModelSerializer):
     created_by = UserSerializer()
-    feedback = FeedbackSerializer()
+    feedback = FeedbackReadSerializer()
+
     class Meta:
         model = models.FeedbackComment
         fields = (

@@ -23,8 +23,10 @@ from .serializers import (
     CourseSerializer, 
     UserSerializer, 
     PresentationSerializer, 
-    FeedbackSerializer, 
-    FeedbackCommentSerializer,
+    FeedbackWriteSerializer,
+    FeedbackReadSerializer, 
+    FeedbackCommentWriteSerializer,
+    FeedbackCommentReadSerializer
 )
 
 
@@ -80,30 +82,38 @@ class PresentationViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         self.permission_classes = [IsAuthenticated]
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
-            self.permission_classes = [IsAdminUser]
+            self.permission_classes = [IsAuthenticated]
         return super().get_permissions()
 
 
 class FeedbackViewSet(viewsets.ModelViewSet):
     queryset = Feedback.objects.all()
-    serializer_class = FeedbackSerializer
     filterset_class = FeedbackFilter
+
+    def get_serializer_class(self):
+        if self.action in ['create', 'update', 'partial_update']:
+            return FeedbackWriteSerializer
+        return FeedbackReadSerializer
 
     def get_permissions(self):
         self.permission_classes = [IsAuthenticated]
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
-            self.permission_classes = [IsAdminUser]
+            self.permission_classes = [IsAuthenticated]
         return super().get_permissions()
 
 
 class FeedbackCommentViewSet(viewsets.ModelViewSet):
     queryset = FeedbackComment.objects.all()
-    serializer_class = FeedbackCommentSerializer
     filterset_class = FeedbackCommentFilter
+
+    def get_serializer_class(self):
+        if self.action in ['create', 'update', 'partial_update']:
+            return FeedbackCommentWriteSerializer
+        return FeedbackCommentReadSerializer
 
     def get_permissions(self):
         self.permission_classes = [IsAuthenticated]
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
-            self.permission_classes = [IsAdminUser]
+            self.permission_classes = [IsAuthenticated]
         return super().get_permissions()
 
