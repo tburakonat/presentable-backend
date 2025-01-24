@@ -19,7 +19,7 @@ class FeedbackAdmin(admin.ModelAdmin):
 
 
 class FeedbackCommentAdmin(admin.ModelAdmin):
-    list_display = ('content', 'created_by', 'feedback')
+    list_display = ('id', 'content', 'created_by', 'feedback')
 
 
 admin.site.register(User, UserAdmin)
