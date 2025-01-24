@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework import status
 from rest_framework.decorators import action
 from .filters import (
     UserFilter, 
@@ -116,4 +117,10 @@ class FeedbackCommentViewSet(viewsets.ModelViewSet):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
             self.permission_classes = [IsAuthenticated]
         return super().get_permissions()
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.is_deleted = True
+        instance.save()
+        return Response({'detail': 'Comment marked as deleted'}, status=status.HTTP_204_NO_CONTENT)
 

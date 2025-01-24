@@ -71,6 +71,9 @@ class FeedbackComment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_feedback_comments')
     feedback = models.ForeignKey(Feedback, on_delete=models.CASCADE, related_name='feedback_comments')
+    parent_comment = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='replies')
+    is_deleted = models.BooleanField(default=False)
+
 
     def __str__(self):
         return f"Comment {self.id} by {self.created_by.get_full_name()} to {self.feedback}"

@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from . import models
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from drf_spectacular.utils import extend_schema_field
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -94,6 +95,12 @@ class FeedbackReadSerializer(serializers.ModelSerializer):
 class FeedbackCommentWriteSerializer(serializers.ModelSerializer):
     created_by = serializers.PrimaryKeyRelatedField(queryset=models.User.objects.all())
     feedback = serializers.PrimaryKeyRelatedField(queryset=models.Feedback.objects.all())
+    parent_comment = serializers.PrimaryKeyRelatedField(
+        queryset=models.FeedbackComment.objects.all(), 
+        required=False, 
+        allow_null=True
+    )
+
 
     class Meta:
         model = models.FeedbackComment
@@ -103,12 +110,15 @@ class FeedbackCommentWriteSerializer(serializers.ModelSerializer):
             'created_at',
             'created_by',
             'feedback',
+            'parent_comment',
         )
 
 
 class FeedbackCommentReadSerializer(serializers.ModelSerializer):
     created_by = UserSerializer()
-    feedback = FeedbackReadSerializer()
+    feedback = serializers.PrimaryKeyRelatedField(queryset=models.Feedback.objects.all())
+    parent_comment = serializers.PrimaryKeyRelatedField(read_only=True)
+    replies = serializers.SerializerMethodField()
 
     class Meta:
         model = models.FeedbackComment
@@ -118,5 +128,13 @@ class FeedbackCommentReadSerializer(serializers.ModelSerializer):
             'created_at',
             'created_by',
             'feedback',
+            'parent_comment',
+            'replies',
+            'is_deleted',
         )
+
+    # Use a type hint to specify the return type of the method -- drf-spectacular will use this information to generate the OpenAPI schema.
+    def get_replies(self, obj):
+        replies = obj.replies.all()
+        return FeedbackCommentReadSerializer(replies, many=True).data
 
