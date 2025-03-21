@@ -1,0 +1,24 @@
+# Ignoriere Python Bytecode
+
+**pycache**/
+_.pyc
+_.pyo
+\*.pyd
+
+# Virtuelle Umgebungen
+
+venv/
+.env
+.env.local
+
+# Git und Editor-Dateien
+
+.git/
+.gitignore
+.idea/
+.vscode/
+
+# Docker selbst
+
+docker-compose.yml
+Dockerfile
